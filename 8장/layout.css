@@ -1,0 +1,101 @@
+body{
+    font-family: "맑은 고딕", "고딕", "굴림"
+}
+
+header{
+    background-color: rgba(167, 185, 218, 0.799);
+    width: 80%;
+    margin-right: auto; /*이미지 위치 조절*/
+    margin-left: auto;
+    padding: 10px; 
+    overflow: hidden; /**/
+}
+
+h1{
+    background-color: blue;
+    font-size: 2em;
+}
+
+/*header의 자손인 h1 태그에 적용*/
+header h1{
+    width: 40%;
+    color: rgb(205, 255, 208);
+    float: left;
+}
+
+/*header의 자식인 nav에 적용*/
+header > nav{
+    background-color: rgba(128, 255, 0, 0.579);
+    width: 60%;
+    float: right /*영역에서 삐져나와 둥둥 떠나니듯한 느낌*/
+}
+
+nav > ul{
+    list-style-type: none;
+}
+
+nav > ul > li{
+    display: inline;
+    float: left;
+    margin: 15px;
+}
+
+a{
+    text-decoration: none; /*텍스트에 부가효과 적용*/
+    color: antiquewhite;
+}
+
+section{
+    width: 80%;
+    margin-right: auto;
+    margin-left: auto;
+    border: 5px solid#333; /*두께 스타일 색깔*/
+    padding: 5px;
+}
+
+h2{
+    font-size: 1.8em;
+    padding: 15px;
+    border-radius: 3px;
+    box-shadow: -3px 3px 3px 0px gray;/*칸에 대한 그림자*/ /*(x, y, 번짐, 행)*/ 
+    /*박스는 왼쪽 모서리(0, 0)를 기준으로 한다.*/
+}
+
+h3{
+    font-size: 1.3em;
+    padding: 15px 0px 15px 10px;
+    border-left: 8px solid #9e2b2b;
+}
+
+p{
+    line-height: 30px;
+    font-size: 15px;
+    margin: 20px;
+}
+
+dl{
+    line-height: 30px;
+    padding-left: 30px;
+}
+
+dt{
+    font-size: 1.1em;
+    font-weight: bold;
+    color:rgb(81, 167, 138);
+}
+
+article ul{
+    line-height: 30px;
+}
+
+footer{
+    background-color: #333;
+    color: aliceblue;
+    text-align: center;
+    width: 80%;
+    margin: auto;
+    margin-right: auto; 
+    margin-left: auto;
+    padding: 10px;
+    
+}
