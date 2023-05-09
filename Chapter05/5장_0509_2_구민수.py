@@ -15,16 +15,18 @@ sum = 0
         #유효한 성적이 아닙니다. 출력
 while i <= 5:
     input_num = int(input('{}번째 과목의 성적을 입력하시오 : ' .format(lo)))
-    print("1과목의 점수는 {}점 입니다." .format(input_num))
-    i = i + 1
-    lo = lo + 1
+    print("{}과목의 점수는 {}점 입니다." .format(lo, input_num))
+    
     if input_num < 0 or input_num > 100:
         print("유효한 성적이 아닙니다.")
         
     #아니면
+    else:
+        sum = sum + input_num
+        i = i + 1
+    lo = lo + 1
     
 #총점을 계산해 저장 그리고 출력
-sum = sum + input_num
 print("총점 : {}점 입니다." .format(sum))
 
 #평균을 계산해 저장 그리고 출력
