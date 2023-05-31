@@ -1,0 +1,5 @@
+guminsu 100 100 100
+maeunsu 78 78 78
+yuhundong 98 78 85
+choieninsu 65 98 98
+ceonsu 12 27 65
