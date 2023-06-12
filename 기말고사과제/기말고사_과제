@@ -1,0 +1,122 @@
+'''
+작성일 : 2023년 00월 00일
+학과 : 컴퓨터공학부
+학번 : 202395001
+이름 : 구민수
+설명 : 딕셔너리를 이용하여 파일에 자신의 수입과 지출, 기타비용의 기록을 입력한 다음 자신이 불러오기를 원한 달에 있는 기록을
+       불러오고 한달전과 현재의 금액을 비교하는 프로그램
+'''
+###사용할 변수###
+#year: 년도를 저장
+#income: 수입을 저장
+#expense: 지출을 저장
+#other_costs: 기타비용을 저장
+#entry_month: 월 정보를 저장
+
+###리스트###
+#data: 각 수입,지출,기타비용 등 내용을 저장하는 리스트
+
+
+###문제분석###
+#1.사용할 세트는 몇 개 인가?
+#2. 몇 개월을 기준으로 할까?
+#3. 함수의 종류
+#4. 금액을 어떻게 비교할지?
+#5. 어떻게 값을 추출할지? 
+
+
+#함수정의 - 1
+#파일을 쓰기 모드로 열어서 2023년의 년도, 월, 수입, 지출, 기타 비용를 리스트 형식으로 반복문을 사용해서 12월까지 순차적을 입력받아 저장하는 함수
+#함수정의 - 2
+#자신이 원하는 달에 저장된 기록을 출력하는 함수
+
+#함수정의
+#수입, 지출, 기타비용을 저장하기 위한 함수
+def write_expenses():
+    #파일을 읽기 모드로 연다.
+    with open('2023.txt', 'w') as f:
+        #1월부터 12월까지 반복한다.
+        for month in range(1, 4):
+            print(f"=== {month}월 ===")
+            #수입, 지출, 기타비용을 입력받는다.
+            year = "2023"
+            income = input("수입: ")
+            expense = input("지출: ")
+            other_costs = input("기타비용: ")
+            #년도, 월, 수입, 지출, 기타비용의 기록을 파일에 저장한다.
+            f.write(f"년도: {year}\n")
+            f.write(f"월: {month}\n")
+            f.write(f"수입: {income}\n")
+            f.write(f"지출: {expense}\n")
+            f.write(f"기타비용: {other_costs}\n")
+            f.write("\n") #줄바꿈
+
+#함수정의
+#기록을 찾고 불러오는 함수
+def read_expenses(month):
+    #파일을 읽기 모드로 연다.
+    with open('2023.txt', 'r') as f:
+        #파일의 내용을 불러와서 빈 줄(\n)을 기준으로 리스트에 저장한다.
+        data = f.read().split('\n\n')
+        #리스트에 있는 각 정보들을 순회한다.
+        for entry in data:
+            #빈 줄을 기준으로 정볼르 나누어서 리스트에 저장한다.
+            entry_lines = entry.split('\n')
+            #각 정보들의 줄을 순회한다.
+            for line in entry_lines:
+                #만약 줄이 '월'로 시작한다면
+                if line.startswith("월:"):
+                    #월 정보를 콜론을 기준으로 나누고 1번지 값을 변수에 저장한다.
+                    entry_month = line.split(': ')[1]
+                    #만약 원하는 달이 찾고싶은 달과 일치한다면
+                    if entry_month == str(month):
+                        #해당 정보를 출력한다.
+                        print(entry)
+
+#함수정의
+#총수입, 총지출, 잔액을 계산하기 위한 함수
+def calculate():
+    #총수입과 총지출을 저장하시 위한 변수를 초기화
+    total_income = 0
+    total_expense = 0
+
+    #파일을 읽기 모드로 연다.
+    with open('2023.txt', 'r') as f:
+        #빈 줄을 기준으로 내용을 나누어서 리스트에 저장
+        data = f.read().split('\n\n')
+        #한 달간의 정보에 대해 반복
+        for entry in data:
+            #각 내용들을 줄 단위로 나눠서 리스트에 저장
+            entry_lines = entry.split('\n')
+            #각 줄에 대해서 반복
+            for line in entry_lines:
+                #만약 줄이 수입으로 시작한다면
+                if line.startswith("수입:"):
+                    #내용을 콜론을 기준으로 나누고 1번지 값을 실수로 변환해서 총수입에 더한다.
+                    income = float(line.split(': ')[1])
+                    total_income += income
+                #아니고 만약에 줄이 지출로 시작한다면
+                elif line.startswith("지출:"):
+                    #내용을 콜론을 기준으로 나누고 1번지 값을 실수로 변환해서 총지출에 더한다.
+                    expense = float(line.split(': ')[1])
+                    total_expense += expense
+    
+    #잔액을 계산
+    remaining_balance = total_income - total_expense
+    #총수입과 총지출 그리고 잔액을 출력한다.
+    print(f"총 수입: {total_income}원")
+    print(f"총 지출: {total_expense}원")
+    print(f"잔액: {remaining_balance}원")
+
+#첫 번째 함수를 출력
+write_expenses()
+#원하는 달을 입력받는다.
+desired_month = int(input("원하는 달을 입력하세요 (1-12): "))
+print("============================")
+#두 번쨰 함수를 호출
+read_expenses(desired_month)
+print("============================")
+#세 번쨰 함수를 호출
+calculate()
+
+
